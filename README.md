@@ -10,7 +10,7 @@ boxmiao 的 agent skills 集合。`skills/` 下每个子目录是一个独立的
 
 ### [vibe-fork-init](skills/vibe-fork-init/)
 
-既有仓库(fork 或非 fork)的 Vibe Coding 接管:实测验证门命令后写入 `AGENTS.md`(协作模式、完成定义、提交与推送策略等);fork 仓库额外配置 `upstream` 远程、分支模型、上游同步流程与冲突解决规则。可选 README 顶部 Vibe Coding 声明。
+既有仓库(fork 或非 fork)的 Vibe Coding 接管:从 CI 配置等收集验证门命令写入 `AGENTS.md`(初始化只跑查询类快速命令,构建、测试等耗时命令不跑;含协作模式、完成定义、提交与推送策略等);fork 仓库额外配置 `upstream` 远程、分支模型、上游同步流程与冲突解决规则。可选 README 顶部 Vibe Coding 声明。
 
 ## 使用
 

@@ -31,7 +31,7 @@
 > [!IMPORTANT]
 > **Vibe Coding 开发声明**
 >
-> 本仓库是个人 fork，以 Vibe Coding 方式开发维护:
+> 本仓库是个人 fork,以 Vibe Coding 方式开发维护:
 >
 > - 所有代码变更均由 AI agent 执行
 > - 分支模型、上游同步、冲突处理等约定见 [AGENTS.md](AGENTS.md)

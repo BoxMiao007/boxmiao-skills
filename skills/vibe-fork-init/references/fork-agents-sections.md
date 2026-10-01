@@ -8,10 +8,10 @@ fork 仓库在协作层(`agents-template.md`)之外追加的节。占位符全�
 | ------ | ---- | ---- |
 | `{{INTEGRATION_BRANCH}}` | fork 的集成分支名 | 与用户确认,默认沿用当前主分支 |
 | `{{UPSTREAM_BRANCH}}` | 上游默认分支名 | GitHub API `default_branch` 或询问用户 |
-| `{{DEP_FILES}}` | 依赖清单/锁文件(变更即触发重装) | 按探测到的生态确定,不限于示例:pnpm 通常是 `package.json / pnpm-lock.yaml`,uv 是 `pyproject.toml / uv.lock`,纯 Cargo 生态整行省略(cargo 自动拉依赖) |
+| `{{DEP_FILES}}` | 依赖清单/锁文件(变更即触发重装) | 按探测到的生态确定,不限于示例:pnpm 通常是 `package.json / pnpm-lock.yaml`,uv 是 `pyproject.toml / uv.lock`,纯 Cargo 生态没有锁文件,正文中"依赖文件有变更…"整条 bullet 省略(cargo 自动拉依赖) |
 | `{{DEP_INSTALL}}` | 依赖安装命令 | 该生态的官方安装命令,与上一行对应,如 `pnpm install`、`uv sync` |
-| `{{BUILD_COMMAND}}` | 完整打包命令 | 核实过才写;无则删掉该行 |
-| `{{VERIFY_COMMANDS}}` | 验证门命令组合 | 与协作层「完成定义」节同一个占位符,用同一组实测命令,不要写出两套 |
+| `{{BUILD_COMMAND}}` | 完整打包命令(慢,不属于验证门) | 从 CI/文档提取;无则删掉该行 |
+| `{{VERIFY_COMMANDS}}` | 验证门命令组合 | 与协作层「完成定义」节同一个占位符,用同一组命令(标注规则同协作层),不要写出两套 |
 
 ## fork-only / 上游维护时的头部
 
