@@ -13,7 +13,5 @@
 
 <!-- vibe-coding-declaration:begin -->
 > [!IMPORTANT]
-> **AI 开发声明**
->
 > 本仓库由 AI 开发与维护，所有代码变更均由 AI 执行。
 <!-- vibe-coding-declaration:end -->

@@ -43,7 +43,7 @@ fork 仓库追加项:
 
 1. fork 仓库才做——配 upstream:`git remote -v` 里没有 upstream 才 `git remote add upstream <源仓库>`;已存在则核对指向是否为源仓库,不对时 `git remote set-url` 改正。然后 `git fetch upstream --tags`,报告 ahead/behind 差距。
 2. 按 `references/agents-template.md` 写 `AGENTS.md` 协作层;fork 仓库再按 `references/fork-agents-sections.md` 追加 fork 层。占位符全部替换成真实值;验证门命令 CI 来源的直接写,其他来源带"待实测"标注;不适用的段落整段删除,不留占位符。fork 仓库按第二步 6 的策略区分动作:fork-only 与保留上游内容并追加 → 协作层 + fork 层都写;合并进自维护内容 → 现有协作约定不动,只追加缺失的 fork 层各节。非 fork 仓库已有 AGENTS.md 时,不整篇覆盖,只追加缺失的协作层各节,语义冲突处向用户指出后再定。
-3. 若用户要 README 声明:按 `references/readme-vibe-declaration.md` 插入(块内链接了 AGENTS.md,必须在第 2 步之后做)。
+3. 若用户要 README 声明:按 `references/readme-vibe-declaration.md` 插入。
 4. `.gitignore` 按生态补齐:`.env`、`*.key` 等在第一次提交前先写进去。
 5. **不自动提交、不推送**:报告全部变更与关键决策(改了哪些文件、AGENTS.md 关键决策),提交时机按确认过的提交策略和用户全局规则。
 
