@@ -6,7 +6,7 @@ boxmiao 的 agent skills 集合。`skills/` 下每个子目录是一个独立的
 
 ### [vibe-init](skills/vibe-init/)
 
-全新项目(空目录 / 空仓库)的 Vibe Coding 开发规则初始化:git 仓库、`.gitignore`、仓库根 `AGENTS.md` 协作契约(用户只提需求,AI agent 全权实现、验证、交付),README 顶部写入「AI 开发声明」。不选技术栈、不搭骨架、不做需求规划。
+全新项目(空目录 / 空仓库)的 Vibe Coding 开发规则初始化:git 仓库、`.gitignore`、仓库根 `AGENTS.md` 协作契约(用户只提需求,AI agent 全权实现、验证、交付),含版本与发布规则(SemVer 2.0.0 机械递增、Conventional Commits 前置约定、`CHANGELOG.md`、本地 annotated tag 闸门)与 README 顶部的「AI 开发声明」。不选技术栈、不搭骨架、不做需求规划。
 
 ### [vibe-fork-init](skills/vibe-fork-init/)
 
