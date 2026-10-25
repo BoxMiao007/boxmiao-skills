@@ -66,7 +66,7 @@
 3. 停下并等待用户批准(发布闸门:未获批准不得推送 tag、不得执行 `gh release create`),报告候选版本号与递增理由。批准前不再产生新提交;若已产生,批准后先删掉本地 tag 重打(未推送的 tag 可以删),再推送。
 4. 获批准后推送 tag 并执行 `gh release create`,Release 正文写清本次版本号与变更分类(breaking / feature / fix);`gh` 未认证或仓库无 Release 权限时,只推送 tag 并说明原因,不阻断发布。
 
-验证:宣称发布完成须附 `git tag -l vX.Y.Z` 与 `gh release view vX.Y.Z` 实际输出,并确认版本号文件与 tag 一致。已推送的 tag 不可修改。
+验证:宣称发布完成须附 `git tag -l vX.Y.Z` 与 `gh release view vX.Y.Z` 实际输出,并确认版本号文件与 tag 一致。
 
 ## 知识沉淀(保证任何新会话都能接手)
 
