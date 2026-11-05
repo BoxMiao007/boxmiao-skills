@@ -4,6 +4,9 @@ Thumbs.db
 .idea/
 .vscode/
 
+# skill 评测临时产物
+*-workspace/
+
 # 凭据与环境
 .env
 *.key

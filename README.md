@@ -12,6 +12,10 @@ boxmiao 的 agent skills 集合。`skills/` 下每个子目录是一个独立的
 
 既有仓库(fork 或非 fork)的 Vibe Coding 接管:从 CI 配置等收集验证门命令写入 `AGENTS.md`(初始化只跑查询类快速命令,构建、测试等耗时命令不跑;含协作模式、完成定义、提交与推送策略等);fork 仓库额外配置 `upstream` 远程、分支模型、上游同步流程、冲突解决规则与发布版本命名(fork 发布版本号带 `-fork.数字` 后缀,基于上游未发布代码的发布标预发布加 `-pre.日期`,Release 标题标注 fork/upstream 来源)。可选 README 顶部 AI 开发声明。
 
+### [ui-design-guidelines](skills/ui-design-guidelines/)
+
+界面外观与样式调整默认遵循的设计准则:变动数值保持等宽、嵌套圆角同心、标题平衡换行、柔和阴影替代硬边框,以及用视觉层级和自解释结构代替冗余说明文字,同时保留必要标签与危险操作提示。只描述视觉结果与判据,不绑定具体技术栈;新建组件与样式重写时默认按此检查,并附交付核对清单;Web 实现示例放在 references 下按需读取。
+
 ## 使用
 
 把 skill 目录复制到 agent 的 skills 目录,启动时自动发现:
