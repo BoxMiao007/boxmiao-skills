@@ -6,11 +6,11 @@ boxmiao 的 agent skills 集合。`skills/` 下每个子目录是一个独立的
 
 ### [vibe-init](skills/vibe-init/)
 
-全新项目(空目录 / 空仓库)的 Vibe Coding 开发规则初始化:git 仓库、`.gitignore`、仓库根 `AGENTS.md` 协作契约(用户只提需求,AI agent 全权实现、验证、交付),含版本与发布规则(SemVer 2.0.0 机械递增、Conventional Commits 前置约定、本地 annotated tag 闸门、GitHub Release 记录变更)与 README 顶部的「AI 开发声明」。不选技术栈、不搭骨架、不做需求规划。
+全新项目(空目录 / 空仓库)的 Vibe Coding 开发规则初始化:git 仓库、`.gitignore`、仓库根 `AGENTS.md` 协作契约(用户只提需求,AI agent 全权实现、验证、交付)、前端调试不干扰用户等开发规范,以及版本与发布规则(SemVer 2.0.0 机械递增、Conventional Commits 前置约定、本地 annotated tag 闸门、GitHub Release 记录变更)与 README 顶部的「AI 开发声明」。不选技术栈、不搭骨架、不做需求规划。
 
 ### [vibe-fork-init](skills/vibe-fork-init/)
 
-既有仓库(fork 或非 fork)的 Vibe Coding 接管:从 CI 配置等收集验证门命令写入 `AGENTS.md`(初始化只跑查询类快速命令,构建、测试等耗时命令不跑;含协作模式、完成定义、提交与推送策略等);fork 仓库额外配置 `upstream` 远程、分支模型、上游同步流程、冲突解决规则与发布版本命名(fork 发布版本号带 `-fork.数字` 后缀,基于上游未发布代码的发布标预发布加 `-pre.日期`,Release 标题标注 fork/upstream 来源)。可选 README 顶部 AI 开发声明。
+既有仓库(fork 或非 fork)的 Vibe Coding 接管:从 CI 配置等收集验证门命令写入 `AGENTS.md`(初始化只跑查询类快速命令,构建、测试等耗时命令不跑;含协作模式、完成定义、前端调试不干扰用户、提交与推送策略等);fork 仓库额外配置 `upstream` 远程、分支模型、上游同步流程、冲突解决规则与发布版本命名(fork 发布版本号带 `-fork.数字` 后缀,基于上游未发布代码的发布标预发布加 `-pre.日期`,Release 标题标注 fork/upstream 来源)。可选 README 顶部 AI 开发声明。
 
 ### [ui-design-guidelines](skills/ui-design-guidelines/)
 
