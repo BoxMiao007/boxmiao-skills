@@ -10,3 +10,7 @@ Thumbs.db
 # 凭据与环境
 .env
 *.key
+
+# Python 缓存（skill 脚本）
+__pycache__/
+*.pyc
