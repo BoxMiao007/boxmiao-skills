@@ -31,6 +31,19 @@ SUFFIX = "时使用。"
 # 4 个及以上连续英文单词，视为"被丢弃的英文句子"，拒改（避免误删）
 ENGLISH_RUN = re.compile(r"[A-Za-z]{2,}(?:[\s,'\-]+[A-Za-z]{2,}){3,}")
 
+def english_end(text):
+    """英文原文结束位置：中文尾段可能以英文词开头（如 "Obsidian 命令行…"），
+    取"第一个中文字符之前、最后一个英文句末标点 + 空白"作为边界。"""
+    m = CJK.search(text)
+    if not m:
+        return len(text)
+    head = text[: m.start()]
+    last = None
+    for mm in re.finditer(r"[.!?][,;:)\]]*\s+", head):
+        last = mm
+    return last.end() if last else m.start()
+
+
 
 def read_text(path):
     raw = open(path, "rb").read()
@@ -137,11 +150,11 @@ def rewrite(text, intent):
         if re.search(r"\s#", rest):
             return None, None, "description 行尾有 YAML 行内注释，拒改（请手工处理）"
 
-    m = CJK.search(inner)
-    tail = inner[m.start():] if m else ""
+    cut = english_end(inner)
+    tail = inner[cut:]
     if ENGLISH_RUN.search(tail):
         return None, None, "中文尾段里仍有英文内容，会被删掉，拒改"
-    english = (inner[: m.start()] if m else inner).rstrip()
+    english = inner[:cut].rstrip()
     if not english:
         return None, None, "description 全是中文，没有英文可保留"
     lines[ds] = (lines[ds][: head.end()] + lead + quote + english + " " + intent +
@@ -211,7 +224,7 @@ def main():
                 failed += 1
                 continue
             # 英文原文必须整段保留（不是只看前 40 字符）
-            before_en = before[: CJK.search(before).start()] if CJK.search(before) else before
+            before_en = before[: english_end(before)]
             if not after.startswith(before_en.rstrip()):
                 print(f"FAIL   {skill}: 英文原文被改动，已放弃")
                 failed += 1

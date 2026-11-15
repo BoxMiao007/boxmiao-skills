@@ -21,6 +21,19 @@ except ImportError:
 
 CJK = re.compile(r"[\u3400-\u9fff]")
 
+def english_end(text):
+    """英文原文结束位置：中文尾段可能以英文词开头（如 "Obsidian 命令行…"），
+    取"第一个中文字符之前、最后一个英文句末标点 + 空白"作为边界。"""
+    m = CJK.search(text)
+    if not m:
+        return len(text)
+    head = text[: m.start()]
+    last = None
+    for mm in re.finditer(r"[.!?][,;:)\]]*\s+", head):
+        last = mm
+    return last.end() if last else m.start()
+
+
 
 def split(text):
     lines = text.split("\n")
@@ -108,8 +121,7 @@ def check(path, baseline, require_suffix):
                     issues.append("name 被改动")
                 od, nd = norm(bmeta.get("description")), d
                 # 基线里可能已经有中文尾段（例如 --force-chinese 换格式），只比对英文前缀
-                m0 = CJK.search(od) if od else None
-                od_en = (od[: m0.start()] if m0 else od).strip() if od else ""
+                od_en = od[: english_end(od)].strip() if od else ""
                 if od_en and nd and not nd.startswith(od_en):
                     issues.append("英文原文不再是前缀（疑似被翻译或删改）")
     elif baseline:

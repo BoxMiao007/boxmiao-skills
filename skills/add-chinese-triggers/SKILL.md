@@ -52,6 +52,8 @@ description: Test-driven development. Use when the user wants to build features 
 - 写**这个 skill 管什么事**，不写"用户会怎么说"。
 - 2–5 个同义词用 `/` 并列：`审/评审`、`查/排查`、`画/做`、`建/改/优化`、`找/装`。
 - 英文技术名词保留原样：`.canvas`、`AGENTS.md`、`CI secrets`、`Result`、`Defuddle`。
+- **不要重复 skill 名或它调用的工具名**——`name` 字段和英文原文已经说了。只有用户可能用这个名字来指代它、而这个名字又不在 `name` 里时（skill 叫 `knap`、用户却说"用 Knap 模板"）才写进去；skill 名就叫 `xxx-cli` 时再写一遍"用 xxx CLI"是纯浪费。
+- 中文段只回答**什么时候用**，不写"怎么用"（手段属于正文）。
 - 一句话，尽量 ≤ 40 字符；用顿号分列举，用分号分并列的语义块。
 - 不以拉丁字母结尾就直接接 `时使用。`；以拉丁字母结尾时补一个空格（`…调 description 时使用。`）。
 - 忠实于英文原文的**范围**：英文说"deepening opportunities"就不要写成"重构"（那是更大的集合，会误触发）。

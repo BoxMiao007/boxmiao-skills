@@ -75,5 +75,7 @@ for d in sorted(os.listdir(".")):
 | 列举用户原话 | 贵，且换个说法就漏 | 写意图 + 同义词 |
 | 中文里用 ASCII 冒号+空格 | YAML 直接解析失败 | 用全角 `：` |
 | 把 `deepening opportunities` 写成"重构" | 范围变大，容易误触发 | 忠实原意，用"加深模块的机会" |
+| 中文段重复 skill 名/工具名（`用 chrome-devtools CLI 开页面…`） | 零信息增量，白花 token；还会让触发条件变成"用户得先提工具名" | 直接写场景：`开页面、抓快照、看网络时使用` |
+| 以工具名开头写触发条件 | 更像前置条件，用户不提工具就不触发 | 以任务开头，工具名（若确有需要）放句中 |
 | 手改 YAML | 引号/折叠块容易被改坏 | 用 `scripts/apply_cn_triggers.py` |
 | 没有 baseline 就宣称"没改坏" | 无法证明 | 动手前先快照，跑 `verify_descriptions.py --baseline` |
