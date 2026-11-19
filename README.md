@@ -20,6 +20,10 @@ boxmiao 的 agent skills 集合。`skills/` 下每个子目录是一个独立的
 
 给已有 skill 的 description 追加中文触发,让中文用户的说法也能触发它:只改 description 里的中文段,不动 `name`、英文原文、正文与其它 frontmatter。格式统一为「<英文原文> <中文意图>时使用。」,中文意图写「意图 + 同义词」(如"查/排查难 bug、性能回归、报错"),比列举用户原话省约 72% 的 token 且覆盖更宽;description 本身已是中文的 skill 默认跳过。附带三个脚本:`apply_cn_triggers.py`(幂等落地,支持无引号/单引号/双引号/`>`/`|`,保留引号风格与 LF/CRLF 行尾,遇英文残留或行内注释会拒改)、`verify_descriptions.py`(带 baseline 时逐字节确认英文与正文没被动)、`measure_tokens.py`(量 token 增量)。
 
+### [anti-spoiler-timing](skills/anti-spoiler-timing/)
+
+防剧透人工校轴：把翻译完成的 ASS 转成只含唯一 ID、`█` 填充与 S/M/L 长度档的占位轴稿，校轴人员在 Aegisub 里只能调时间轴与样式/位置，读不到译文；回稿后做解析级白名单校验（ID 必须存活、正文不得篡改）、只替换 ID token 回填译文，最后终检 CPS/碰撞/标签配对并生成看板，支持按时间戳报障反查 ID。配套 `scripts/pipeline.mjs` 提供 generate/validate/backfill/qc/trace 五个入口；对照表与 manifest 落在 ASS 同级隐藏目录，不随占位稿交付。`evals/` 下有 1080 行全标签压力字幕 `stress-complex.ass` 与可复现生成器 `gen_stress.mjs`、`stress_check.mjs`。
+
 ## 使用
 
 把 skill 目录复制到 agent 的 skills 目录,启动时自动发现:

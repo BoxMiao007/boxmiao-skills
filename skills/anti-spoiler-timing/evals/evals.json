@@ -1,0 +1,33 @@
+{
+  "skill_name": "anti-spoiler-timing",
+  "evals": [
+    {
+      "id": 1,
+      "name": "generate-placeholder",
+      "prompt": "把翻译完成的 ASS 转成防剧透占位轴稿。输入文件：\n\n[Script Info]\nScriptType: v4.00+\n\n[V4+ Styles]\nFormat: Name, Fontname, Fontsize\nStyle: Default,Arial,20\n\n[Events]\nFormat: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text\nDialogue: 0,0:00:01.00,0:00:03.00,Default,,0,0,0,,今晚的会议决定了城市的命运\nDialogue: 0,0:00:03.50,0:00:05.00,Default,,0,0,0,,{\\an8}他低声说：别相信任何人",
+      "expected_output": "生成 .placeholder.ass，每行 Text 只含行首标签 + [[AS:行号:8位哈希|S/M/L]] + █ 填充；不含任何译文文字；隐藏目录里落盘 manifest.json 与 mapping.json，mapping 里保存完整译文。",
+      "files": []
+    },
+    {
+      "id": 2,
+      "name": "reject-tampered-return",
+      "prompt": "校轴回稿如下，其中第 2 行的 ID token 被误删，正文被改成了台词。请校验。\n\n[Events]\nFormat: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text\nDialogue: 0,0:00:01.20,0:00:03.10,Default,,0,0,0,,[[AS:0001:a1b2c3de|M]]████████████████\nDialogue: 0,0:00:03.60,0:00:05.20,Default,,0,0,0,,他低声说：别相信任何人",
+      "expected_output": "validate 返回 ok:false，violations 里至少包含 missing_token（第 2 行）与 missing_id（对应 ID）；不执行回填，把违规清单原样反馈给用户。",
+      "files": []
+    },
+    {
+      "id": 3,
+      "name": "trace-by-timestamp",
+      "prompt": "观众报障：00:01:23.450 这一行译文有问题，反查 ID 定位。假设 manifest/mapping 对应的行覆盖 0:01:23.00–0:01:25.00，ID 为 AS:0007:a1b2c3de。",
+      "expected_output": "trace 返回覆盖该时刻的行列表，含 id=AS:0007:a1b2c3de、index=7、起止时间与译文正文；用该 ID 定位源行后重新 backfill → qc，不重新 generate。",
+      "files": []
+    },
+    {
+      "id": 4,
+      "name": "stress-1080-lines-all-tags",
+      "prompt": "用 evals/stress-complex.ass（1080 行 Dialogue，覆盖 Aegisub 全标签、字符串参数剧透、嵌套 \\t、绘图、卡拉OK、畸形时间、负时长、重叠、空正文、超长行、多块行首、注释夹带）跑完整流程：generate → validate → backfill → qc → trace。",
+      "expected_output": "占位稿零剧透泄漏、1080 个 token、仅 AS1 样式；未改标签时 1080 行全部字节级还原；改定位标签后原位保留；qc/trace 按 outputOrder 指对 ID；BOM+CRLF 保留；sourceHash 变更能检出。生成脚本为 evals/gen_stress.mjs（固定种子可复现）。",
+      "files": ["stress-complex.ass", "gen_stress.mjs"]
+    }
+  ]
+}

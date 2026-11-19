@@ -1,0 +1,11 @@
+{
+  "order": 500,
+  "displayDescriptions": {
+    "zh-CN": "防剧透人工校轴：ID 占位轴稿、回稿校验、回填与终检",
+    "en-US": "Spoiler-free manual subtitle timing with ID placeholders",
+    "de-DE": "Spoilerfreies manuelles Timing mit ID-Platzhaltern",
+    "ja-JP": "ネタバレ防止の手動タイミング：ID プレースホルダーと検証",
+    "ko-KR": "스포일러 방지 수동 타이밍: ID 자리표시자와 검증",
+    "pt-BR": "Sincronização manual sem spoilers com marcadores de ID"
+  }
+}
