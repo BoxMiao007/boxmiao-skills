@@ -41,7 +41,7 @@ SKILL.md 第二步 6 选了 fork-only(或上游也维护 AGENTS.md)时,文件开
 - **合并前:**
   - 工作区必须干净;有未提交改动先提交或 stash,并向用户说明放到了哪里。
   - 显式 `git fetch upstream`,不用 `git pull`。
-  - 先总结 `upstream/{{UPSTREAM_BRANCH}}` 新提交,并对照下方「功能清单」标注可能与本 fork 功能重叠的文件。
+  - 先总结 `upstream/{{UPSTREAM_BRANCH}}` 新提交,并对照下方「功能清单」的功能说明,标注可能与本 fork 功能范围重叠的改动。
   - 若发现上游历史被重写(上次合并点不再是 `upstream/{{UPSTREAM_BRANCH}}` 的祖先),停下向用户确认,不强行合并。
 - **合并中:**
   - 冲突逐个解决:先弄清两边意图再融合;本 fork 已有功能不可被丢弃或绕过;禁止为省事整体取单边。
@@ -53,7 +53,7 @@ SKILL.md 第二步 6 选了 fork-only(或上游也维护 AGENTS.md)时,文件开
   - 依赖文件有变更({{DEP_FILES}})先 `{{DEP_INSTALL}}` 再验证。
   - 验证门:{{VERIFY_COMMANDS}}。全部通过才算完成。
   - {{BUILD_COMMAND}} 是完整打包(慢),只在需要产出安装包时执行,不作为每次同步的验证步骤。
-  - 验证门通过后做功能巡检:用 `git diff <上一个 sync 标签>..upstream/{{UPSTREAM_BRANCH}} --name-only` 列出本次同步引入的上游改动,对照「功能清单」的关键文件,输出受影响功能报告——波及哪些功能、判断依据、建议用户在应用里实际验证的点;没有历史标签时以本次合并的 merge-base 为基准。
+  - 验证门通过后做功能巡检:用 `git diff <上一个 sync 标签>..upstream/{{UPSTREAM_BRANCH}} --name-only` 列出本次同步引入的上游改动,对照「功能清单」的功能说明判断波及哪些功能,输出受影响功能报告——判断依据、建议用户在应用里实际验证的点;没有历史标签时以本次合并的 merge-base 为基准。
   - 巡检完成后打标签 `sync/<YYYY-MM-DD>`;是否推送遵循「提交与推送」节策略,只能推 `origin`,绝不推 `upstream`。
 
 ## 发布与版本命名
@@ -62,13 +62,11 @@ fork 版本号 = 上游版本号 + `-fork.N`(N 为 fork 修改序号,纯同步�
 
 ## 功能清单
 
-本节是功能登记的**唯一事实源**:新功能合入集成分支时在此登记一行,功能下线时移除。agent 需要了解本 fork 有哪些功能时只读本节即可,不要为读功能清单去打开 README(那里只是给人看的镜像)。代码演变见 git 历史(`git log upstream/{{UPSTREAM_BRANCH}}..{{INTEGRATION_BRANCH}} --no-merges`)。
+本节是功能登记的**唯一事实源**:新功能合入集成分支时在此登记一条(`**功能名** — 一句话说明`),功能下线时移除。agent 需要了解本 fork 有哪些功能时只读本节即可,不要为读功能清单去打开 README(那里只是给人看的镜像)。代码演变见 git 历史(`git log upstream/{{UPSTREAM_BRANCH}}..{{INTEGRATION_BRANCH}} --no-merges`)。
 
-| 功能 | 一句话说明 | 关键文件/入口 | 引入提交 |
-| ---- | ---------- | -------------- | -------- |
-| (暂无登记,第一个功能合入时添加) | | | |
+- (暂无登记,第一个功能合入时添加)
 
-`README.md` 顶部的 `vibe-feature-registry` 标记块是本表给人看的镜像:登记/移除功能时,同一个动作里同步更新本表和该标记块,防止两处漂移。
+`README.md` 顶部的 `vibe-feature-registry` 标记块是本节给人看的镜像:登记/移除功能时,同一个动作里同步更新本节和该标记块,防止两处漂移。
 
 ## 降低合并冲突的约定
 
